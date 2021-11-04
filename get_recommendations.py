@@ -13,12 +13,5 @@ if __name__ == "__main__":
     
     # give a list of indices to check recommendations for 
     indices_to_check = [0, 6, 10]
-    
-    z = model.encode(test_data.x, test_data.edge_index)
-    prob_adj = z @ z.t()
-    
-    # fill diagonal with 0's so that we don't recommend the orginal paper itself
-    prob_adj = prob_adj.fill_diagonal_(0.0)
-    prob_adj = prob_adj.detach().cpu()
-    sorted, indices = torch.sort(prob_adj[indices_to_check], descending=True)
-    recs = indices[:, :10]
+    recs = get_recommendations(test_data, indices_to_check)
+    print(recs)
