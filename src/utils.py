@@ -34,7 +34,6 @@ def get_recommendations(data, indices, n=10):
     prob_adj = prob_adj.detach().cpu()
     sorted, recs = torch.sort(prob_adj[indices], descending=True)
     recs = recs[:, :n]
-	
 	return recs
 	
 	
