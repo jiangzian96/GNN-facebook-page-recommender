@@ -26,12 +26,12 @@ def prepare_data():
 def get_recommendations(data, indices, n=10):
 	z = model.encode(data.x, data.edge_index)
 	prob_adj = z @ z.t()
-    
-    # fill diagonal with 0's so that we don't recommend the orginal paper itself
-    prob_adj = prob_adj.fill_diagonal_(0.0)
-    prob_adj = prob_adj.detach().cpu()
-    sorted, recs = torch.sort(prob_adj[indices], descending=True)
-    recs = recs[:, :n]
+
+	# fill diagonal with 0's so that we don't recommend the orginal paper itself
+	prob_adj = prob_adj.fill_diagonal_(0.0)
+	prob_adj = prob_adj.detach().cpu()
+	sorted, recs = torch.sort(prob_adj[indices], descending=True)
+	recs = recs[:, :n]
 	return recs
 	
 	
