@@ -1,6 +1,6 @@
 # GNN-facebook-page-recommender
  
-to install the required packages for GNN:
+after having installed `torch`, to install the required packages for GNN:
 
 ```
 try: 
